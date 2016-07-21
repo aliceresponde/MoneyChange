@@ -20,8 +20,6 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.huge.app.moneychange.App;
 import com.huge.app.moneychange.R;
 import com.huge.app.moneychange.api.LatestCuerrencyResponse;
@@ -42,19 +40,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
     Button btnChange;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.container)
-    RelativeLayout container;
+
     @BindView(R.id.chart)
     BarChart chart;
+    @BindView(R.id.container)
+    RelativeLayout container;
+
 
     private MainPresenter presenter;
     private MainComponent component;
     private App app;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    private String strAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +69,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 return hadled;
             }
         });
+        chart.zoomIn();
         setupInjection();
         presenter.onCreate();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void setupInjection() {
@@ -129,26 +123,22 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void displayChange(LatestCuerrencyResponse.Rates change) {
+    public void displayChange(LatestCuerrencyResponse.Rates change, int nDollars) {
         if (change != null) {
-            int nDollars = Integer.parseInt(inputAmount.getText().toString());
             ArrayList<BarEntry> entries = getEntries(change, nDollars);
             BarDataSet dataSet = new BarDataSet(entries, nDollars + " Dollars converted to");
             dataSet.setColors(new int[]{Color.rgb(239, 3, 137)});
             ArrayList<String> labels = getLabels();
             BarData data = new BarData(labels, dataSet);
 
-
             chart.setData(data);
-
             chart.setDescriptionTextSize(12);
-            chart.zoomIn();
             chart.setDescription("");
             chart.animateXY(2000, 2000);
             chart.setVisibility(View.VISIBLE);
             chart.setEnabled(true);
             chart.setDrawValuesForWholeStack(true);
-
+            inputAmount.setText("");
 
         }
     }
@@ -186,12 +176,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         if (app.isOnline()) {
 
-            String strAmount = inputAmount.getText().toString();
+            strAmount = inputAmount.getText().toString();
             if (strAmount.isEmpty()) {
                 inputAmount.setError(getString(R.string.main_error_empty_amount));
             } else {
-                showProgress();
-                hideUIElements();
+
                 presenter.getChange(Integer.parseInt(strAmount));
             }
         } else {

@@ -5,4 +5,5 @@
     <string name="main.btn.change">Change</string>
     <string name="main.error.empty_amount">Empty field</string>
     <string name="main.message.no_internet">No internet connection</string>
+    <string name="main_message_success">Your change of %d dollars is ready  </string>
 </resources>

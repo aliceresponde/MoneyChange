@@ -12,6 +12,6 @@ public interface MainView {
     void showUIElements();
     void hideUIElements();
 
-    void displayChange(LatestCuerrencyResponse.Rates change);
+    void displayChange(LatestCuerrencyResponse.Rates change, int nDollars);
     void onGetCurrencyError(String error);
 }

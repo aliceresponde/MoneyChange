@@ -1,7 +1,5 @@
 package com.huge.app.moneychange.main;
 
-import android.util.Log;
-
 import com.huge.app.moneychange.libs.EventBus;
 import com.huge.app.moneychange.main.event.MainEvent;
 import com.huge.app.moneychange.main.ui.MainView;
@@ -13,13 +11,18 @@ import org.greenrobot.eventbus.Subscribe;
  */
 public class MainPresenterImp  implements  MainPresenter{
     private MainView view;
-    EventBus eventBus;
-    MainInteractor interactor;
+    private EventBus eventBus;
+    private MainInteractor interactor;
 
     public MainPresenterImp(MainView view, EventBus eventBus, MainInteractor interactor) {
         this.view = view;
         this.eventBus = eventBus;
         this.interactor = interactor;
+    }
+
+
+    public MainView getView() {
+        return view;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class MainPresenterImp  implements  MainPresenter{
                 view.onGetCurrencyError(error);
             }else{
                 if (event.getType() == MainEvent.GET && event.getRates() != null ){
-                    view.displayChange(event.getRates());
+                    view.displayChange(event.getRates(), event.getnDollars());
                 }
                 else {
                     view.onGetCurrencyError("No data");
@@ -55,6 +58,8 @@ public class MainPresenterImp  implements  MainPresenter{
 
     @Override
     public void getChange(int dollarAmout) {
+        view.showProgress();
+        view.hideUIElements();
         interactor.getChange(dollarAmout);
     }
 }

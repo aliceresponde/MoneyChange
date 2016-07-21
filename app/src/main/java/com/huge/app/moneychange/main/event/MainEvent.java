@@ -8,11 +8,20 @@ import com.huge.app.moneychange.api.LatestCuerrencyResponse;
 public class MainEvent {
 
     private int type;
+    private int nDollars;
     private String error;
     private LatestCuerrencyResponse.Rates rates;
 
     public final static int GET = 0;
 
+
+    public int getnDollars() {
+        return nDollars;
+    }
+
+    public void setnDollars(int nDollars) {
+        this.nDollars = nDollars;
+    }
 
     public int getType() {
         return type;

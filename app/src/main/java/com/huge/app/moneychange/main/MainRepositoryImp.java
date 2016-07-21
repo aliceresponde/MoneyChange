@@ -22,7 +22,7 @@ public class MainRepositoryImp implements  MainRepository{
     }
 
     @Override
-    public void getChange(int dollarAmout) {
+    public void getChange(final int dollarAmout) {
         Call<LatestCuerrencyResponse> call = service.search(CurrencyService.BASE, CurrencyService.SYMBOLS);
         Callback<LatestCuerrencyResponse> callback = new Callback<LatestCuerrencyResponse>() {
             @Override
@@ -31,30 +31,30 @@ public class MainRepositoryImp implements  MainRepository{
                     LatestCuerrencyResponse latesCurrencyResponse = response.body();
 
                     if (latesCurrencyResponse != null){
-                        post(MainEvent.GET, null, latesCurrencyResponse.getRates());
+                        post(MainEvent.GET, null, latesCurrencyResponse.getRates() , dollarAmout);
                     }else{
-                        post(MainEvent.GET, response.message() , null);
+                        post(MainEvent.GET, response.message() , null , dollarAmout);
                     }
                 }else {
-                    post(MainEvent.GET, "ERROR", null);
+                    post(MainEvent.GET, "ERROR", null, dollarAmout);
                 }
             }
 
             @Override
             public void onFailure(Call<LatestCuerrencyResponse> call, Throwable t) {
-                post(MainEvent.GET, t.getLocalizedMessage(), null);
+                post(MainEvent.GET, t.getLocalizedMessage(), null, dollarAmout);
             }
         };
 
         call.enqueue(callback);
     }
 
-    private void post(int eventType, String error, LatestCuerrencyResponse.Rates rates) {
+    private void post(int eventType, String error, LatestCuerrencyResponse.Rates rates, int nDollars) {
         MainEvent event = new MainEvent();
         event.setType(eventType);
         event.setError(error);
         event.setRates(rates);
-
+        event.setnDollars(nDollars);
         eventBus.post(event);
     }
 }
