@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoneyChange</string>
+
+    <string name="main.input.add_currency_to_change">Add dollar amount to change</string>
+    <string name="main.btn.change">Change</string>
+    <string name="main.error.empty_amount">Empty field</string>
 </resources>
