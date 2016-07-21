@@ -1,7 +1,5 @@
 package com.huge.app.moneychange.main;
 
-import android.util.Log;
-
 /**
  * Created by alice on 7/20/16.
  */
@@ -14,7 +12,6 @@ public class MainInteractorImp implements MainInteractor {
 
     @Override
     public void getChange(int dollarAmout) {
-        Log.i("MainInteractorImp", "getChange");
 
         repository.getChange(dollarAmout);
     }

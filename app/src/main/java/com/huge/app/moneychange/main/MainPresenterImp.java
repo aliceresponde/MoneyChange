@@ -36,7 +36,6 @@ public class MainPresenterImp  implements  MainPresenter{
     @Subscribe
     @Override
     public void onEventMainThread(MainEvent event) {
-        Log.i("boo", "onEventMainThread");
         if (view != null){
             view.hideProgress();
             view.showUIElements();
@@ -56,7 +55,6 @@ public class MainPresenterImp  implements  MainPresenter{
 
     @Override
     public void getChange(int dollarAmout) {
-        Log.i("presenter", "getChange");
         interactor.getChange(dollarAmout);
     }
 }

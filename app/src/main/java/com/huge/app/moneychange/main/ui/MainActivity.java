@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 presenter.getChange(Integer.parseInt(strAmount));
             }
         } else {
-            Snackbar.make(container, "No internet connection", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(container, R.string.main_message_no_internet, Snackbar.LENGTH_SHORT).show();
         }
     }
 
