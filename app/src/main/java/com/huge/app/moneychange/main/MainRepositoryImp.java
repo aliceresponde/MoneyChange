@@ -27,7 +27,7 @@ public class MainRepositoryImp implements  MainRepository{
         Callback<LatestCuerrencyResponse> callback = new Callback<LatestCuerrencyResponse>() {
             @Override
             public void onResponse(Call<LatestCuerrencyResponse> call, Response<LatestCuerrencyResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccess()){
                     LatestCuerrencyResponse latesCurrencyResponse = response.body();
 
                     if (latesCurrencyResponse != null){

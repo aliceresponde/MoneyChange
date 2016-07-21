@@ -20,6 +20,7 @@ public class LatestCuerrencyResponse{
     @Expose
     private Rates rates;
 
+
     /**
      *
      * @return

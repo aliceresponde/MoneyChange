@@ -9,7 +9,6 @@ import com.huge.app.moneychange.main.di.DaggerMainComponent;
 import com.huge.app.moneychange.main.di.MainComponent;
 import com.huge.app.moneychange.main.di.MainModule;
 import com.huge.app.moneychange.main.ui.MainView;
-import com.huge.app.moneychange.utils.FontsOverride;
 
 /**
  * Created by alice on 7/20/16.
@@ -18,8 +17,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/Copernicus-Book.otf");
+//        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/Copernicus-Book.otf");
     }
 
     public MainComponent getMainComponent( MainView view) {

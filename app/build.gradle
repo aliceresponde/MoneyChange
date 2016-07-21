@@ -54,7 +54,9 @@ dependencies {
     compile 'com.github.PhilJay:MPChart:v2.0.9'
 
 
-    testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:$rootProject.ext.robolectricVersion" // UI test
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
 
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
