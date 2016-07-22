@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void showUIElements() {
         inputAmount.setEnabled(true);
         btnChange.setEnabled(true);
+        inputAmount.setText("");
     }
 
     @Override
@@ -138,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
             chart.setVisibility(View.VISIBLE);
             chart.setEnabled(true);
             chart.setDrawValuesForWholeStack(true);
-            inputAmount.setText("");
 
         }
     }

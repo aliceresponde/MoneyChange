@@ -40,9 +40,9 @@ public class MainPresenterImp  implements  MainPresenter{
     @Override
     public void onEventMainThread(MainEvent event) {
         if (view != null){
+            String error = event.getError();
             view.hideProgress();
             view.showUIElements();
-            String error = event.getError();
             if (error != null){
                 view.onGetCurrencyError(error);
             }else{
