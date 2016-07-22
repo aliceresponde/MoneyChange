@@ -27,9 +27,10 @@ public class MainPresenterImpTest extends BaseTest {
     private MainInteractor interactor;
     @Mock
     private MainEvent event;
-
-
+    @Mock
     private LatestCuerrencyResponse.Rates rates;
+
+
     private  MainPresenterImp presenter;
     int nDollar;
 
